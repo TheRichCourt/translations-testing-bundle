@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            * {padding: 0; margin: 0; box-sizing: border-box;}
+
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                display: flex;
+                font-size: 14px;
+            }
+
+            h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                font-weight: 100;
+            }
+
+            p {
+                margin-bottom: 1rem;
+            }
+
+            section {
+                flex: 1;
+                padding: 3rem;
+            }
+
+            section.translations {
+                background: #32a8bd;
+                background: -moz-linear-gradient(-45deg, #32a8bd 0, #32bc6e 100%);
+                background: -webkit-linear-gradient(-45deg, #32a8bd, #32bc6e);
+                background: linear-gradient(135deg, #32a8bd, #32bc6e);
+                color: white;
+            }
+
+            section.form {
+                background-color: #f2f2f2;
+                min-height: 100vh;
+            }
+
+            fieldset {
+                border: none;
+            }
+
+            section.form form legend {
+                padding-bottom: 3rem;
+                font-weight: bold;
+            }
+
+            section.form form div.form-row {
+                padding-bottom: 3rem;
+            }
+
+            section.form form div.flex-row {
+                display: flex;
+                gap: 3rem;
+            }
+
+            section.form form div.flex-row .form-row {
+                flex: 1;
+            }
+
+            section.form form div.form-row label {
+                display: block;
+                padding-bottom: .5rem;
+            }
+
+            section.form form div.form-row input {
+                width: 100%;
+                font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                padding: 1rem;
+                border: none;
+                border-radius: .25rem;
+                box-shadow: 0 4px 5px #e2e2e2;
+            }
+
+            section.form form div.form-row input::placeholder {
+                color: #e2e2e2;
+            }
+
+            section.form form button {
+                padding: 1rem;
+                border-radius: .5rem;
+                background: #bd4932;
+                background: -moz-linear-gradient(-45deg, #bd4932 0, #bc327c 100%);
+                background: -webkit-linear-gradient(-45deg, #bd4932, #bc327c);
+                background: linear-gradient(135deg, #bd4932, #bc327c);
+                border: none;
+                box-shadow: 0 4px 5px #e2e2e2;
+                color: white;
+                font-weight: bold;
+                text-transform: uppercase;
+                float: right;
+                transition: all .28s ease;
+            }
+
+            section.form form button:hover {
+                background-color: #9A3650;
+                box-shadow: 0 4px 5px #aaa;
+                cursor: pointer;
+            }
+
+            div.translation-header {
+                padding-bottom: 3rem;
+            }
+
+            @keyframes riseup {
+                from {
+                    transform: translateY(.5rem);
+                    opacity: 0;
+                }
+
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+
+            div.translated-text-card {
+                padding: 1rem;
+                border-radius: .5rem;
+                box-shadow: 0 4px 5px #308171;
+                margin-bottom: 3rem;
+                background-color: white;
+                color: #212121;
+                animation: riseup .56s ease-out;
+            }
+
+            div.translated-text-card span.text {
+                display: block;
+            }
+
+            div.translated-text-card span.locale {
+                display: block;
+                text-align: right;
+                color: #aaa;
+            }
+
+            .is-black {
+                color: #212121 !important;
+            }
+
+            .is-orange {
+                color: orange !important;
+            }
+
+            .flag-orange {
+                border-bottom: .5rem solid orange;
+            }
+
+            .big-text {
+                font-size: 2rem !important;
+            }
+
+            ul {
+                margin-bottom: 3rem;
+                list-style-type: none;
+            }
+        </style>
+    </head>
+    <body>
+        <section class="translations">
+            <h1>Translation Tester</h1>
+
+            {% if translations is not empty %}
+                <div class="translation-header">
+                    <em>Showing translation results for:</em>
+
+                    <h2>
+                        {%- for part in trans_key|split('.') -%}
+                            <span>{{ part }}</span>
+                            {%- if not loop.last %}<span class="is-black">.</span>{% endif -%}
+                        {%- endfor -%}
+                    </h2>
+
+                    {% if trans_arguments is not empty %}
+                        <em>With arguments:</em>
+
+                        <ul>
+                            {% for key, value in trans_arguments %}
+                                <li>
+                                    <strong>{{ key }}</strong>: {{ value }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <em>With <strong>no</strong> arguments</em>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {% for locale, translation in translations %}
+                <div class="translated-text-card {{ translation == trans_key ? 'flag-orange' : '' }}">
+                    <span class="text {{ translation|length > 60 ? '' : 'big-text' }}">
+                        {{ translation }}
+                    </span>
+
+                    {% if translation == trans_key %}
+                        <em class="is-orange">Matches translation key. Is the translation missing?</em>
+                    {% endif %}
+
+                    {# <span class="locale"><em>{{ locale|language_name }} [{{ locale }}]</em></span> #}
+                </div>
+            {% else %}
+                <p>Please enter some details to test a translation</p>
+            {% endfor %}
+        </section>
+
+        <section class="form">
+            <form method="GET">
+                <div class="form-row">
+                    <label>Translation key</label>
+                    <input name="transkey" placeholder="e.g. 'form.label.surname'" value="{{ trans_key }}"/>
+                </div>
+
+                <legend>Arguments</legend>
+
+                <fieldset>
+                    {% for i in [1, 2, 3] %}
+                        {% set arguments = requested_arguments[i] ?? null %}
+
+                        <div class="flex-row">
+                            <div class="form-row">
+                                <label>Key</label>
+                                <input type="text" name="arguments[{{ i }}][key]" placeholder="e.g. 'count'" value="{{ arguments.key ?? '' }}"/>
+                            </div>
+
+                            <div class="form-row">
+                                <label>Value</label>
+                                <input type="text" name="arguments[{{ i }}][value]" placeholder="e.g. '5'" value="{{ arguments.value ?? '' }}"/>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </fieldset>
+
+                <div class="bottom-fixed">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </section>
+    </body>
+</html>

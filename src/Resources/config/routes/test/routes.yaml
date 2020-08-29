@@ -1,0 +1,3 @@
+_translations_testing:
+    resource: '@TranslationsTestingBundle/Resources/config/routes.yaml'
+    prefix: /tests/translations

@@ -1,0 +1,5 @@
+parameters:
+    ignoreErrors:
+        -
+            message: '/Cannot call method end\(\) on Symfony\\Component\\Config\\Definition\\Builder\\NodeParentInterface\|null\./'
+            path: src/DependencyInjection/Configuration.php

@@ -1,0 +1,5 @@
+translations_test_index:
+    # Path prefix will be set in the parent project's config
+    path: /
+    controller: TheRichCourt\TranslationsTestingBundle\Controller\TranslationsTestingController::indexAction
+    methods: [GET]

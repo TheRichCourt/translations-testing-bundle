@@ -1,0 +1,41 @@
+{
+    "name": "therichcourt/translations-testing-bundle",
+    "description": "A simple way to test translations in your Symfony application",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Rich Court",
+            "email": "therichcourt@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "TheRichCourt\\TranslationsTestingBundle\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Tests\\TheRichCourt\\TranslationsTestingBundle\\": "tests/" }
+    },
+    "require": {
+        "symfony/framework-bundle": "^4.3|^5.0",
+        "twig/intl-extra": "^3.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^0.12.34",
+        "phpstan/extension-installer": "^1.0",
+        "phpstan/phpstan-deprecation-rules": "^0.12.5",
+        "squizlabs/php_codesniffer": "^3.5",
+        "symfony/phpunit-bridge": "^5.1",
+        "matthiasnoback/symfony-config-test": "^4.2",
+        "symfony/yaml": "^5.1",
+        "symfony/browser-kit": "^5.1",
+        "symfony/routing": "^5.1",
+        "symfony/translation": "^5.1",
+        "symfony/twig-bundle": "^5.1"
+    },
+    "scripts": {
+        "test": [
+            "vendor/bin/simple-phpunit -c phpunit.xml --color=always",
+            "vendor/bin/phpstan analyse src --level=8 --ansi",
+            "vendor/bin/phpcs --standard=PSR12 src --colors -p"
+        ]
+    }
+}

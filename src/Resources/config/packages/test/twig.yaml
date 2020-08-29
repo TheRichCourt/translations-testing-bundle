@@ -1,0 +1,6 @@
+twig:
+    globals:
+        locales:
+            - en
+            - es
+            - fr
