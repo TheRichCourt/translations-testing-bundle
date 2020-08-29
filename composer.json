@@ -8,6 +8,7 @@
             "email": "therichcourt@gmail.com"
         }
     ],
+    "license": "MIT",
     "autoload": {
         "psr-4": { "TheRichCourt\\TranslationsTestingBundle\\": "src/" }
     },
