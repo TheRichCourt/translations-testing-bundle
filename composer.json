@@ -35,7 +35,7 @@
     },
     "scripts": {
         "test": [
-            "vendor/bin/simple-phpunit -c phpunit.xml --color=always",
+            "XDEBUG_MODE=coverage vendor/bin/simple-phpunit -c phpunit.xml --color=always --coverage-text",
             "vendor/bin/phpstan analyse src --level=8 --ansi",
             "vendor/bin/phpcs --standard=PSR12 src --colors -p"
         ]

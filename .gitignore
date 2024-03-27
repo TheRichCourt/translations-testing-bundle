@@ -2,3 +2,4 @@ vendor
 cache
 var/log
 .phpunit.result.cache
+.phpunit.cache

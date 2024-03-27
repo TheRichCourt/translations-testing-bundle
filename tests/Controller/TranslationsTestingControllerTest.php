@@ -6,9 +6,9 @@ namespace Tests\TheRichCourt\TranslationsTestingBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Routing\RouterInterface;
-
 /**
  * @internal
+ * @covers \TheRichCourt\TranslationsTestingBundle\Controller\TranslationsTestingController
  */
 final class TranslationsTestingControllerTest extends WebTestCase
 {

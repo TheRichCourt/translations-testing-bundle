@@ -9,7 +9,9 @@ RUN apt-get -y update && \
         # libzip-dev \
         zip \
         git \
-        curl
+        curl &&  \
+    pecl install xdebug && \
+    docker-php-ext-enable xdebug
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer

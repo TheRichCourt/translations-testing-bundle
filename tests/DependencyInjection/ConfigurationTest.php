@@ -10,6 +10,7 @@ use TheRichCourt\TranslationsTestingBundle\DependencyInjection\Configuration;
 
 /**
  * @internal
+ * @covers \TheRichCourt\TranslationsTestingBundle\DependencyInjection\Configuration
  */
 final class ConfigurationTest extends TestCase
 {
