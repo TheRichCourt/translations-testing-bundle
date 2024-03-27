@@ -6,3 +6,5 @@ framework:
         utf8: true
     translator:
         fallback: 'en'
+    secret: notreallyasecret
+    http_method_override: false

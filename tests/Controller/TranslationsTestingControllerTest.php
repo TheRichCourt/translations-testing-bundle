@@ -17,7 +17,7 @@ final class TranslationsTestingControllerTest extends WebTestCase
         $client = static::createClient();
 
         /** @var RouterInterface */
-        $router = static::$container->get('router');
+        $router = static::getContainer()->get('router');
 
         $client->request('GET', $router->generate('translations_test_index'));
 

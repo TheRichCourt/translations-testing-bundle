@@ -9,11 +9,12 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
-class Configuration implements ConfigurationInterface
+final class Configuration implements ConfigurationInterface
 {
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('translations_testing');
+
         /** @var ArrayNodeDefinition $rootNode */
         $rootNode = $treeBuilder->getRootNode();
 
@@ -26,7 +27,7 @@ class Configuration implements ConfigurationInterface
                 ->end()
             ->end()
             ->validate()
-            ->iftrue(function (array $config) {
+            ->iftrue(function (array $config): bool {
                 if (empty($config['locales'])) {
                     return true;
                 }
@@ -39,7 +40,7 @@ class Configuration implements ConfigurationInterface
 
                 return false;
             })
-            ->then(function (array $config) {
+            ->then(function (array $config): array {
                 if (empty($config['locales'])) {
                     throw new LogicException('`locales` configuration contains no values.');
                 }

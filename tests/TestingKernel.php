@@ -18,7 +18,7 @@ use TheRichCourt\TranslationsTestingBundle\TranslationsTestingBundle;
  *
  * @internal
  */
-class TestingKernel extends Kernel
+final class TestingKernel extends Kernel
 {
     use MicroKernelTrait;
 
@@ -27,7 +27,7 @@ class TestingKernel extends Kernel
         parent::__construct('test', true);
     }
 
-    public function registerBundles()
+    public function registerBundles(): iterable
     {
         return [
             new FrameworkBundle(),
@@ -36,18 +36,13 @@ class TestingKernel extends Kernel
         ];
     }
 
-    protected function configureRoutes(RoutingConfigurator $routes)
+    protected function configureRoutes(RoutingConfigurator $routes): void
     {
         $routes->import(__DIR__ . '/../src/Resources/config/routes/test/routes.yaml', 'test');
     }
 
-    public function registerContainerConfiguration(LoaderInterface $loader)
+    public function registerContainerConfiguration(LoaderInterface $loader): void
     {
         $loader->load(__DIR__ . '/../src/Resources/config/packages/test/*.yaml', 'glob');
     }
-
-    // public function getCacheDir()
-    // {
-    //     return __DIR__ . '/../cache/' . spl_object_hash($this);
-    // }
 }
