@@ -55,7 +55,18 @@ Any PRs with fixes or improvements gratefully received.
 
 ### Setting the project up
 
-Simply fork, clone and then run `composer install`.
+Simply fork, clone and then run:
+
+```
+docker build -t translations-testing-bundle .
+docker run -it --name translations-testing-bundle --volume .:/usr/src/app translations-testing-bundle
+```
+
+Connect to the container, then in there, run:
+
+```
+composer install
+```
 
 ### Testing
 
