@@ -16,11 +16,11 @@
         "psr-4": { "Tests\\TheRichCourt\\TranslationsTestingBundle\\": "tests/" }
     },
     "require": {
-        "symfony/framework-bundle": "^4.4|^5.0|^6.0|^7.0",
+        "symfony/framework-bundle": "^5.4|^6.0|^7.0",
         "twig/intl-extra": "^3.0"
     },
     "require-dev": {
-        "php": "^7.0|~8.0|~8.1|~8.2|~8.3",
+        "php": "~8.1|~8.2|~8.3",
         "ext-xdebug": "*",
         "phpstan/phpstan": "^1.0",
         "phpstan/extension-installer": "^1.0",
@@ -28,11 +28,11 @@
         "squizlabs/php_codesniffer": "^3.5",
         "symfony/phpunit-bridge": "^5.1|^6.0|^7.0",
         "matthiasnoback/symfony-config-test": "^4.2",
-        "symfony/yaml": "^5.1|^6.0|^7.0",
-        "symfony/browser-kit": "^5.1|^6.0|^7.0",
-        "symfony/routing": "^5.1|^6.0|^7.0",
-        "symfony/translation": "^5.1|^6.0|^7.0",
-        "symfony/twig-bundle": "^5.1|^6.0|^7.0"
+        "symfony/yaml": "^5.4|^6.0|^7.0",
+        "symfony/browser-kit": "^5.4|^6.0|^7.0",
+        "symfony/routing": "^5.4|^6.0|^7.0",
+        "symfony/translation": "^5.4|^6.0|^7.0",
+        "symfony/twig-bundle": "^5.4|^6.0|^7.0"
     },
     "scripts": {
         "test": [
