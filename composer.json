@@ -21,6 +21,7 @@
     },
     "require-dev": {
         "php": "^7.0|~8.0|~8.1|~8.2|~8.3",
+        "ext-xdebug": "*",
         "phpstan/phpstan": "^1.0",
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan-deprecation-rules": "^1.0",
